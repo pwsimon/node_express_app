@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_51ae82d723be4ef691e8e75bbce6b41d }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_f5dffaddbcae4604bca1fd046319f352 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_6bd9cac8903c44069efdf1dd890c39cb }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_34eba68e039d42a3bea0a7f58f599c72 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_51ae82d723be4ef691e8e75bbce6b41d }}/appsvc/staticsite:${{ github.sha }}
+        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_6bd9cac8903c44069efdf1dd890c39cb }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'graph-calendar-service'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7b54ffb57a6a48d58109f0103a63d9a1 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_51ae82d723be4ef691e8e75bbce6b41d }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_08bf6e56424a4af0b7f525e76c671684 }}
+        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_6bd9cac8903c44069efdf1dd890c39cb }}/appsvc/staticsite:${{ github.sha }}'
